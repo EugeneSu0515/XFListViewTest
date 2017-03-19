@@ -47,7 +47,7 @@ namespace ListViewTest.ViewModels
 
 
         public DelegateCommand SelectedStudentCommand { get; set; }
-
+        public DelegateCommand<Student> DeleteStudentCommand { get; set; }
 
         public readonly IPageDialogService _dialogService;
         private readonly INavigationService _navigationService;
@@ -77,6 +77,15 @@ namespace ListViewTest.ViewModels
 
                 await _navigationService.NavigateAsync("DetailPage", naviparams);
                 //_dialogService.DisplayAlertAsync("Info", CurrStudent.Name, "OK");
+            });
+
+            DeleteStudentCommand = new DelegateCommand<Student>(s =>
+            {
+                var deleteStud = Students.FirstOrDefault(x => x.Id == s.Id);
+                if (deleteStud != null)
+                {
+                    Students.Remove(deleteStud);
+                }
             });
         }
 

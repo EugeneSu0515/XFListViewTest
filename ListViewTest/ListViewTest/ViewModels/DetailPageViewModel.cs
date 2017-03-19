@@ -67,7 +67,7 @@ namespace ListViewTest.ViewModels
 
         public void OnNavigatedFrom(NavigationParameters parameters)
         {
-            throw new NotImplementedException();
+
         }
 
         public void OnNavigatedTo(NavigationParameters parameters)
@@ -77,7 +77,6 @@ namespace ListViewTest.ViewModels
                 CurrStudent = parameters["CurrStudent"] as Student;
                 Title = $"{CurrStudent.Name}的資料";
             }
-            //throw new NotImplementedException();
         }
     }
 }

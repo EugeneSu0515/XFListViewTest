@@ -5,6 +5,7 @@
              xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="ListViewTest.Views.MainPage"
+             x:Name="ThisPage"
              Title="MainPage">
     <StackLayout HorizontalOptions="Center" VerticalOptions="Start">
         <Label Text="{Binding Title}" />
@@ -19,16 +20,28 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout
-                            Orientation="Horizontal">
-                            <Label Text="{Binding Id}"></Label>
-                            <Label Text="{Binding Name}"></Label>
+                        <Grid>
+                            <Label
+                                Grid.Column="0"
+                                HorizontalOptions="Start"
+                                Text="{Binding Id}"></Label>
+                            <Label
+                                Grid.Column="1"
+                                Text="{Binding Name}"></Label>
                             <Button
-                                Text="刪除"
+                                Grid.Column="2"
+                                Text="刪除" 
                                 HorizontalOptions="End"
+                                Command="{Binding Path=BindingContext.DeleteStudentCommand,
+                                 Source={x:Reference ThisPage}}"
+                                CommandParameter="{Binding .}"
+                                />
+                            <!--<Button 
+                                HorizontalOptions="End"
+                                Text="刪除" 
                                 Command="{Binding DeleteStudentCommand}"
-                                ></Button>
-                        </StackLayout>
+                                CommandParameter="{Binding .}"></Button>-->
+                        </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
